@@ -1,0 +1,49 @@
+name: 复购管家
+repo: bangwozuo/local-retention-zh
+legacy_name: 私域复购管家
+version: 0.2.0
+asset_type: prompt-only
+stage: P0
+complexity: M
+group: 本地生活商家
+runtime_dependencies: none
+api_key_required: false
+demand_ids:
+  - D07
+  - D21
+  - D26
+
+workflows:
+  - name: 入群欢迎与打标
+    id: de_local_03_wf01
+  - name: 每日朋友圈文案
+    id: de_local_03_wf02
+  - name: 社群活动 SOP
+    id: de_local_03_wf03
+  - name: 沉睡客户唤醒
+    id: de_local_03_wf04
+  - name: 到店核销引导
+    id: de_local_03_wf05
+
+skills:
+  - id: wecom-customer-sync
+    name: 企微客户对接
+    family: 
+  - id: moments-copy-generate
+    name: 朋友圈文案生成
+    family: 
+  - id: community-sop-library
+    name: 社群 SOP 模板库
+    family: 
+  - id: coupon-strategy
+    name: 优惠券策略
+    family: 
+  - id: account-ban-risk-control
+    name: 封号合规风控
+    family: 
+
+compliance:
+  ai_label_required: true
+  human_review_required: true
+  forbidden_words_check: true
+  official_api_only: true

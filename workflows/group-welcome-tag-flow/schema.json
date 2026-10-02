@@ -1,0 +1,79 @@
+{
+  "workflow_id": "de_local_03_wf01",
+  "name": "入群欢迎与打标",
+  "type": "composite",
+  "skill_refs": ["wecom-customer-sync", "community-sop-library", "account-ban-risk-control"],
+  "input": {
+    "type": "object",
+    "required": ["shop", "new_members"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "today": {"type": "string", "description": "快照日（缺省取当天）"},
+      "new_members": {
+        "type": "array",
+        "description": "新入群成员列表；source 为获客渠道口径，未知不许猜",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "source": {"type": "string", "description": "到店扫码/收银台立牌/外卖包裹卡/老带新/朋友圈广告/团购核销/未知"},
+            "added_at": {"type": "string", "description": "入群时间"},
+            "group": {"type": "string", "description": "所属群"},
+            "inviter": {"type": "string", "description": "邀请人（老带新时必填）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "items"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "新成员数 / 标签分布 / 待确认来源数 / 迎新 SOP 与健康线",
+        "properties": {
+          "新成员数": {"type": "integer"},
+          "标签分布": {"type": "object"},
+          "待确认来源数": {"type": "integer"},
+          "72h首单转化健康线": {"type": "string"}
+        }
+      },
+      "items": {
+        "type": "array",
+        "description": "迎新打标执行清单",
+        "items": {
+          "type": "object",
+          "properties": {
+            "成员": {"type": "string"},
+            "来源": {"type": "string"},
+            "建议标签": {"type": "string"},
+            "邀请人": {"type": "string"},
+            "欢迎语要点": {"type": "string"},
+            "D1": {"type": "string"},
+            "D2": {"type": "string"},
+            "D3": {"type": "string"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:welcome_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/迎新打标执行清单.xlsx", "out/welcome_flow.json"],
+  "constraints": {
+    "welcome_sla_minutes": 5,
+    "welcome_max_chars": 50,
+    "onboarding_touch_cap": 2,
+    "first_order_72h_baseline": ">=20%",
+    "referrer_tag_required": true,
+    "no_guess_source": true,
+    "no_share_gate": true,
+    "survey_max_questions": 3,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

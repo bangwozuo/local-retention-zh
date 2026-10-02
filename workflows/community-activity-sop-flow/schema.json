@@ -1,0 +1,92 @@
+{
+  "workflow_id": "de_local_03_wf03",
+  "name": "社群活动 SOP",
+  "type": "composite",
+  "skill_refs": ["community-sop-library", "wecom-customer-sync", "account-ban-risk-control"],
+  "input": {
+    "type": "object",
+    "required": ["shop", "industry", "groups"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "industry": {"type": "string", "enum": ["餐饮", "零售", "美业", "其他"], "description": "门店行业"},
+      "week_goal": {"type": "string", "description": "本周目标：会员日预热 / 拉新 / 清库存 / 空位变现 / 常规运营"},
+      "staff": {"type": "string", "description": "群主人力（决定动作密度）"},
+      "groups": {
+        "type": "array",
+        "description": "群列表；发言数据须来自真实导出（wecom-customer-sync 每周全量）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "members": {"type": "integer"},
+            "weekly_speakers": {"type": "integer", "description": "近 7 日发言人数"},
+            "daily_msgs": {"type": "integer", "description": "日均消息数"},
+            "ad_ratio": {"type": "number", "description": "广告消息占比 0-1；缺失标注未知"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "diagnosis", "schedule"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "群况判定 / 活动匹配来源 / 健康度基线 / 频控说明",
+        "properties": {
+          "群况判定": {"type": "object"},
+          "活动匹配来源": {"type": "string"},
+          "频控": {"type": "string"}
+        }
+      },
+      "diagnosis": {
+        "type": "array",
+        "description": "逐群健康度诊断",
+        "items": {
+          "type": "object",
+          "properties": {
+            "群名": {"type": "string"},
+            "人数": {"type": "integer"},
+            "7日发言率": {"type": "string"},
+            "广告占比": {"type": "string"},
+            "判定": {"type": "string", "enum": ["健康", "待激活", "沉默群", "劣化群"]},
+            "诊断说明": {"type": "string"}
+          }
+        }
+      },
+      "schedule": {
+        "type": "array",
+        "description": "周排期，每个动作带时段与量化验收标准",
+        "items": {
+          "type": "object",
+          "properties": {
+            "动作": {"type": "string"},
+            "时段": {"type": "string"},
+            "验收标准": {"type": "string"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:activity_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/本周社群活动SOP.docx", "out/社群活动排期.xlsx", "out/群健康度.png", "out/activity_flow.json"],
+  "constraints": {
+    "health_baselines": {
+      "group_size": "150-300（>400 拆群）",
+      "weekly_speak_rate": ">=15%（<8% 沉默）",
+      "ad_ratio": "<=30%（>50% 劣化）",
+      "first_order_72h": ">=20%",
+      "monthly_leave_rate": "<=5%"
+    },
+    "touch_cap_per_7d": 2,
+    "sick_group_policy": "沉默群先问卷重启；劣化群先停硬广",
+    "acceptance_must_be_quantified": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

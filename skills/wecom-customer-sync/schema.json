@@ -1,0 +1,90 @@
+{
+  "skill_id": "de_local_03_sk01",
+  "name": "企微客户对接",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["system", "task"],
+    "properties": {
+      "system": {
+        "type": "string",
+        "description": "目标系统：企业微信（其他系统走各自连接器）",
+        "enum": ["企业微信", "微信个人号（仅人工导出）"]
+      },
+      "task": {
+        "type": "string",
+        "description": "同步任务：每日增量 / 每周全量 / 触达回写 / 单次导出",
+        "enum": ["每日增量", "每周全量", "触达回写", "单次导出"]
+      },
+      "channel": {
+        "type": "string",
+        "description": "通道 A（官方 API，只读起步）或 B（人工导出 T+1）；不填则 A 优先 B 降级"
+      },
+      "time_window": {
+        "type": "string",
+        "description": "数据时间窗，如「2026-09-01 至 09-30」"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["sync_record", "data_package"],
+    "properties": {
+      "sync_record": {
+        "type": "object",
+        "description": "同步执行单",
+        "properties": {
+          "通道": {"type": "string", "enum": ["A（官方 API）", "B（人工导出）"]},
+          "数据新鲜度": {"type": "string", "enum": ["实时", "T+1"]},
+          "拉取范围": {"type": "string"},
+          "记录数": {"type": "object"},
+          "字段缺口": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "write_list": {
+        "type": "array",
+        "description": "打标/回写执行清单（脱敏），须人工确认后才执行",
+        "items": {
+          "type": "object",
+          "properties": {
+            "客户标识": {"type": "string", "description": "昵称+手机尾号后4位"},
+            "动作": {"type": "string"},
+            "标签/字段": {"type": "string"},
+            "依据": {"type": "string"}
+          }
+        }
+      },
+      "data_package": {
+        "type": "object",
+        "description": "交给下游的客户事件流字段映射",
+        "properties": {
+          "customer_id": {"type": "string"},
+          "added_at": {"type": "string"},
+          "last_interact_at": {"type": "string"},
+          "dormant_days": {"type": "integer"},
+          "tags": {"type": "array", "items": {"type": "string"}},
+          "group_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "x-rendered-from": "capability:wecom_sync"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_behaviors": [
+      "使用爬虫/协议机器人/外挂连接企微微信",
+      "在对话或产物中出现 corpid/secret/token",
+      "导出聊天内容",
+      "静默批量写（打标/群发无人工确认）",
+      "数据缺失补零"
+    ],
+    "compliance": {
+      "minimize_data": true,
+      "mask_phone": "仅后4位",
+      "deletion_sla_days": 3,
+      "batch_write_confirm_threshold": 100
+    },
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "skill_id": "de_local_03_sk05",
+  "name": "封号合规风控",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["action", "plan"],
+    "properties": {
+      "action": {
+        "type": "string",
+        "description": "待审动作：加人计划 / 群发计划 / 活动方案 / 朋友圈排期 / 拟用工具",
+        "maxLength": 200
+      },
+      "plan": {
+        "type": "string",
+        "description": "具体计划内容：频次、话术、工具名、账号情况",
+        "maxLength": 5000
+      },
+      "account_status": {
+        "type": "string",
+        "description": "账号状态：新号 / 老号 / 有降权记录；有记录的账号从严处理"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "violations"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "受审动作 / 频次核算 / 计数 / 整体判定",
+        "properties": {
+          "受审动作": {"type": "string"},
+          "频次核算": {"type": "string", "description": "每客户每日 X 条（限额 1）"},
+          "拦截": {"type": "integer"},
+          "缓行": {"type": "integer"},
+          "整体判定": {"type": "string", "enum": ["放行", "修改后放行", "拦截"]}
+        }
+      },
+      "violations": {
+        "type": "array",
+        "description": "违规清单，按级别排序",
+        "items": {
+          "type": "object",
+          "properties": {
+            "级别": {"type": "string", "enum": ["🔴 拦截", "🟡 缓行", "🔵 提示"]},
+            "原计划": {"type": "string"},
+            "命中规则": {"type": "string"},
+            "风险后果": {"type": "string"},
+            "合规替代": {"type": "string"}
+          }
+        }
+      },
+      "account_advice": {
+        "type": "array",
+        "description": "账号健康建议（养号/降频/分流）",
+        "items": {"type": "string"}
+      }
+    },
+    "x-rendered-from": "capability:ban_risk_review"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_behaviors": [
+      "推荐协议bot/群控/模拟器/自动加人软件",
+      "提供规避风控检测的方案",
+      "设置转发才能领的诱导分享门槛"
+    ],
+    "frequency_limits": {
+      "group_msg_per_customer_per_day": 1,
+      "marketing_msg_per_customer_per_week": 2,
+      "add_friends_per_day_per_account": 30,
+      "pass_rate_stop_threshold": 0.5,
+      "new_account_warmup_days": "7-14"
+    },
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

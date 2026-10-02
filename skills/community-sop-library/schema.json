@@ -1,0 +1,94 @@
+{
+  "skill_id": "de_local_03_sk03",
+  "name": "社群 SOP 模板库",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["industry", "group_status"],
+    "properties": {
+      "industry": {
+        "type": "string",
+        "description": "门店行业：餐饮 / 零售（便利店·生鲜·烘焙） / 美业（美甲·美发·皮肤管理）",
+        "enum": ["餐饮", "零售", "美业", "其他到店业态"]
+      },
+      "group_status": {
+        "type": "string",
+        "description": "现有群概况：群数、各群人数、近 7 日发言人数、日均消息数、上次活动时间"
+      },
+      "staffing": {
+        "type": "string",
+        "description": "群主人力（几人、是否兼职），决定 SOP 动作密度"
+      },
+      "week_goal": {
+        "type": "string",
+        "description": "本周目标，如：会员日预热 / 拉新 50 人 / 清临期库存"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "weekly_plan"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "行业 / 群况 / 健康度诊断 / 本周主题",
+        "properties": {
+          "健康度判定": {"type": "string", "enum": ["健康", "待激活", "沉默群"]},
+          "本周主题": {"type": "string"}
+        }
+      },
+      "weekly_plan": {
+        "type": "array",
+        "description": "按日动作表，每条带负责人与量化验收标准",
+        "items": {
+          "type": "object",
+          "properties": {
+            "日期": {"type": "string"},
+            "时段": {"type": "string"},
+            "动作": {"type": "string"},
+            "内容要点": {"type": "string"},
+            "负责人": {"type": "string"},
+            "验收标准": {"type": "string"}
+          }
+        }
+      },
+      "activity_sop": {
+        "type": "array",
+        "description": "活动专项 SOP（预热 D-3/D-1/当天/战报），含人工确认点",
+        "items": {
+          "type": "object",
+          "properties": {
+            "阶段": {"type": "string"},
+            "时间": {"type": "string"},
+            "动作": {"type": "string"},
+            "物料": {"type": "string"},
+            "人工确认点": {"type": "string"}
+          }
+        }
+      },
+      "metrics": {
+        "type": "array",
+        "description": "健康度基线对照表",
+        "items": {"type": "string"}
+      }
+    },
+    "x-rendered-from": "capability:community_sop"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_words": ["转发才能领", "集赞领取"],
+    "health_baselines": {
+      "group_size": "150-300",
+      "weekly_speak_rate": ">=15%",
+      "ad_ratio": "<=30%",
+      "first_order_in_72h": ">=20%",
+      "monthly_leave_rate": "<=5%"
+    },
+    "touch_limits": {
+      "activity_touch_per_7d_per_customer": 2,
+      "marketing_msg_per_customer_per_day": 1
+    },
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

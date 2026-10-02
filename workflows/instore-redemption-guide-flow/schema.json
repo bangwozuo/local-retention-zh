@@ -1,0 +1,79 @@
+{
+  "workflow_id": "de_local_03_wf05",
+  "name": "到店核销引导",
+  "type": "composite",
+  "skill_refs": ["coupon-strategy", "wecom-customer-sync"],
+  "input": {
+    "type": "object",
+    "required": ["shop", "today", "coupons"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "today": {"type": "string", "description": "快照日 YYYY-MM-DD"},
+      "coupons": {
+        "type": "array",
+        "description": "在途券列表；code 为归因锚，缺失即失去核销证据",
+        "items": {
+          "type": "object",
+          "properties": {
+            "customer": {"type": "string"},
+            "code": {"type": "string", "description": "归因券码（唯一）"},
+            "face": {"type": "number", "description": "面额（元）"},
+            "threshold": {"type": "number", "description": "满减门槛（元）"},
+            "expire": {"type": "string", "description": "到期日 YYYY-MM-DD"},
+            "reminded": {"type": "boolean", "description": "是否已提醒过（一券只提醒一次）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "items"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "在途券总数 / 本批提醒数 / 过期损失数 / 窗口与归因规则",
+        "properties": {
+          "在途券总数": {"type": "integer"},
+          "本批提醒数": {"type": "integer"},
+          "过期券数（损失统计）": {"type": "integer"},
+          "归因口径": {"type": "string"}
+        }
+      },
+      "items": {
+        "type": "array",
+        "description": "核销提醒执行清单",
+        "items": {
+          "type": "object",
+          "properties": {
+            "客户": {"type": "string"},
+            "券码": {"type": "string"},
+            "面额(元)": {"type": "number"},
+            "门槛": {"type": "string"},
+            "到期日": {"type": "string"},
+            "距到期(天)": {"type": "integer"},
+            "动作": {"type": "string", "enum": ["当天提醒", "D-1 紧迫提醒", "D-3 预告", "不提醒"]},
+            "话术方向": {"type": "string"},
+            "归因券码": {"type": "string"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:redemption_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/核销提醒执行清单.xlsx", "out/redemption_flow.json"],
+  "constraints": {
+    "remind_window_days": 3,
+    "one_coupon_one_reminder": true,
+    "per_customer_per_day": 1,
+    "attribution": "券码归因，核销数据 T+1 以收银系统为准",
+    "redeem_benchmark": "历史核销率 20%-44%",
+    "no_fake_urgency": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

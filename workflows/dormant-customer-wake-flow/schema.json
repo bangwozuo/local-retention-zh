@@ -1,0 +1,77 @@
+{
+  "workflow_id": "de_local_03_wf04",
+  "name": "沉睡客户唤醒",
+  "type": "composite",
+  "skill_refs": ["wecom-customer-sync", "coupon-strategy", "moments-copy-generate", "account-ban-risk-control"],
+  "input": {
+    "type": "object",
+    "required": ["shop", "毛利率", "customers"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "毛利率": {"type": "number", "description": "0-1 小数，如 0.58"},
+      "today": {"type": "string", "description": "快照日（缺省取当天）"},
+      "customers": {
+        "type": "array",
+        "description": "客户列表：dormant_days = 快照日 − 最近互动日（真实互动记录，不许估算）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "customer": {"type": "string"},
+            "dormant_days": {"type": "integer"},
+            "客单价": {"type": "number", "description": "历史客单价；缺失标记待补，不按均价猜"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "items"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "沉睡客户数 / 分桶计数 / 券预算上限 / 频控与复购基准",
+        "properties": {
+          "沉睡客户数": {"type": "integer"},
+          "分桶": {"type": "object"},
+          "券预算上限(元)": {"type": "number"},
+          "频控规则": {"type": "string"},
+          "复购基准": {"type": "string"}
+        }
+      },
+      "items": {
+        "type": "array",
+        "description": "唤醒执行清单",
+        "items": {
+          "type": "object",
+          "properties": {
+            "客户": {"type": "string"},
+            "沉睡天数": {"type": "integer"},
+            "分桶": {"type": "string", "enum": ["30-59 天", "60-89 天", "≥90 天"]},
+            "触达层": {"type": "string", "enum": ["轻触达", "券触达", "强召回"]},
+            "触达动作": {"type": "string"},
+            "券": {"type": "string"},
+            "Day1": {"type": "string"},
+            "Day4": {"type": "string"},
+            "7天触达次数": {"type": "integer", "maximum": 2}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:wake_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/唤醒执行清单.xlsx", "out/wake_flow.json"],
+  "constraints": {
+    "wake_rhythm": {"30d": "轻触达(内容)", "60d": "券触达(满减券)", "90d": "强召回(大额券+新品通知)"},
+    "touch_cap_per_7d": 2,
+    "margin_cap_ratio": 0.30,
+    "active_cutoff_days": 30,
+    "repurchase_benchmark": "餐饮 30 天复购 15-25%",
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

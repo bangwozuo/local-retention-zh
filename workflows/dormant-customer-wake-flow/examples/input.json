@@ -1,0 +1,15 @@
+{
+  "shop": "青禾轻食（写字楼店）",
+  "毛利率": 0.58,
+  "today": "2026-09-29",
+  "customers": [
+    {"customer": "周小姐", "dormant_days": 32, "客单价": 45},
+    {"customer": "韩先生", "dormant_days": 47, "客单价": 38},
+    {"customer": "吴迪", "dormant_days": 61, "客单价": 52},
+    {"customer": "甜甜", "dormant_days": 85, "客单价": 40},
+    {"customer": "老许", "dormant_days": 96, "客单价": 58},
+    {"customer": "Nana", "dormant_days": 130, "客单价": 44},
+    {"customer": "阿昆", "dormant_days": 21, "客单价": 42},
+    {"customer": "小满", "dormant_days": 33, "客单价": 0}
+  ]
+}

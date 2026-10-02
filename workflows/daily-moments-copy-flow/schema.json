@@ -1,0 +1,85 @@
+{
+  "workflow_id": "de_local_03_wf02",
+  "name": "每日朋友圈文案",
+  "type": "composite",
+  "skill_refs": ["moments-copy-generate", "account-ban-risk-control"],
+  "input": {
+    "type": "object",
+    "required": ["shop", "materials"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "date": {"type": "string", "description": "日期（缺省取当天）"},
+      "weather": {"type": "string", "description": "当日天气（可选，供借势选题）"},
+      "today_sent": {
+        "type": "object",
+        "description": "今日已发 {total, marketing}，用于频控核算",
+        "properties": {
+          "total": {"type": "integer"},
+          "marketing": {"type": "integer"}
+        }
+      },
+      "materials": {
+        "type": "array",
+        "description": "今日素材；facts 是文案命根子，缺细节挂起索要，不编造",
+        "items": {
+          "type": "object",
+          "properties": {
+            "topic": {"type": "string"},
+            "type": {"type": "string", "enum": ["幕后", "产品", "促销", "互动"]},
+            "facts": {"type": "array", "items": {"type": "string"}, "description": "真实细节：数字/时间/名字/原话"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "items"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "选题数 / 挂起数 / 拦截数 / 频控与配比规则",
+        "properties": {
+          "选题数": {"type": "integer"},
+          "挂起（缺细节）": {"type": "integer"},
+          "风控拦截": {"type": "integer"},
+          "配比目标": {"type": "string"}
+        }
+      },
+      "items": {
+        "type": "array",
+        "description": "朋友圈发布排期",
+        "items": {
+          "type": "object",
+          "properties": {
+            "选题": {"type": "string"},
+            "类型": {"type": "string"},
+            "发布时段": {"type": "string"},
+            "候选文案": {"type": "string", "description": "≤140 字"},
+            "字数": {"type": "integer"},
+            "风控判定": {"type": "string", "enum": ["通过", "缓行", "拦截", "挂起"]},
+            "风控明细": {"type": "string"},
+            "备注": {"type": "string", "description": "顺延/砍量说明"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:moments_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/朋友圈发布排期.xlsx", "out/moments_flow.json"],
+  "constraints": {
+    "max_chars": 140,
+    "marketing_per_day": 3,
+    "total_per_day": 5,
+    "quiet_hours": "21:30-07:30",
+    "content_mix": "幕后50-60% + 营销30% + 互动10-20%",
+    "forbidden_words": ["最好", "第一", "全网", "独家", "100%", "转发才能领", "集赞"],
+    "no_fabricated_details": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

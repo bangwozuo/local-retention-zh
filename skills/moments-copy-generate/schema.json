@@ -1,0 +1,75 @@
+{
+  "skill_id": "de_local_03_sk02",
+  "name": "朋友圈文案生成",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["brief", "materials"],
+    "properties": {
+      "brief": {
+        "type": "string",
+        "description": "今天写什么：新品 / 天气 / 幕后 / 促销 / 客户返图"
+      },
+      "materials": {
+        "type": "string",
+        "description": "真实素材：进货时间、数量、客人反应、天气、库存等细节；缺细节时 AI 列清单索要，不编"
+      },
+      "shop_persona": {
+        "type": "string",
+        "description": "店主人设口吻，如：话痨暖男火锅店老板 / 高冷手作店主"
+      },
+      "today_limit": {
+        "type": "integer",
+        "description": "今天已发朋友圈条数，用于频控核算（营销 ≤ 3 条/天，总量 ≤ 5）"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["candidates", "self_check"],
+    "properties": {
+      "candidates": {
+        "type": "array",
+        "description": "3 条候选文案，不同骨架",
+        "items": {
+          "type": "object",
+          "properties": {
+            "骨架类型": {"type": "string", "enum": ["新品上市", "天气借势", "幕后信任", "限时specials", "客户返图"]},
+            "发布时段": {"type": "string"},
+            "配图建议": {"type": "string"},
+            "文案": {"type": "string", "description": "全文 ≤ 140 字"},
+            "评论区补位": {"type": "string"}
+          }
+        }
+      },
+      "self_check": {
+        "type": "object",
+        "description": "每条候选的四项自查",
+        "properties": {
+          "字数<=140": {"type": "boolean"},
+          "极限词": {"type": "string"},
+          "诱导分享": {"type": "string"},
+          "细节真实性": {"type": "string"}
+        }
+      },
+      "recommendation": {
+        "type": "string",
+        "description": "推荐 1 条及展开率判断依据"
+      }
+    },
+    "x-rendered-from": "capability:moments_copy"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_words": ["最好吃", "全城第一", "100%", "独家配方", "转发才能领"],
+    "writing_rules": {
+      "max_chars": 140,
+      "photo_count_options": [1, 3, 4, 6],
+      "marketing_per_day": 3,
+      "total_per_day": 5,
+      "quiet_hours": "21:30-07:30"
+    },
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

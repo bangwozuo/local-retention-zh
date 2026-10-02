@@ -1,0 +1,97 @@
+{
+  "skill_id": "de_local_03_sk04",
+  "name": "优惠券策略",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["shop", "客单价", "毛利率"],
+    "properties": {
+      "shop": {
+        "type": "string",
+        "description": "门店名（用于产物标识）"
+      },
+      "客单价": {
+        "type": "number",
+        "description": "近 30 天真实客单价（元）"
+      },
+      "毛利率": {
+        "type": "number",
+        "description": "0-1 小数，如 0.60"
+      },
+      "渠道费率": {
+        "type": "number",
+        "description": "私域发券填 0；外卖渠道约 0.18-0.23",
+        "default": 0
+      },
+      "核销率": {
+        "type": "number",
+        "description": "本店历史券码核销率（0-1），经验区间 0.20-0.44；缺省按 0.28 并标注假设"
+      },
+      "月发放量": {
+        "type": "integer",
+        "description": "计划月发放张数，用于预算测算"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "plans", "sensitivity"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "安全面额上限 / 门槛建议 / 核销率假设 / ROI 达标线",
+        "properties": {
+          "安全面额上限(元)": {"type": "number"},
+          "门槛建议(元)": {"type": "string"},
+          "核销率假设": {"type": "string"},
+          "ROI 达标线": {"type": "string"}
+        }
+      },
+      "plans": {
+        "type": "array",
+        "description": "三档策略券方案（引流/复购/召回）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "方案": {"type": "string"},
+            "面额(元)": {"type": "number"},
+            "门槛(元)": {"type": "number"},
+            "有效期(天)": {"type": "integer"},
+            "券后毛利率": {"type": "string"},
+            "预计核销人次": {"type": "integer"},
+            "总券成本(元)": {"type": "number"},
+            "ROI": {"type": "number"},
+            "风险判定": {"type": "string"}
+          }
+        }
+      },
+      "sensitivity": {
+        "type": "array",
+        "description": "核销率 20% / 实测 / 44% 三情景敏感性",
+        "items": {
+          "type": "object",
+          "properties": {
+            "情景": {"type": "string"},
+            "总券成本(元)": {"type": "number"},
+            "增量毛利(元)": {"type": "number"},
+            "ROI": {"type": "number"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:coupon_plan"
+  },
+  "scripts": {
+    "calc": "scripts/coupon_calc.py",
+    "usage": "python3 scripts/coupon_calc.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/券方案测算.xlsx", "out/券ROI对比.png", "out/coupon_plan.json"],
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_words": ["最低价", "全网第一", "100% 有效"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "margin_cap_ratio": 0.30,
+    "roi_min_threshold": 1.5
+  }
+}

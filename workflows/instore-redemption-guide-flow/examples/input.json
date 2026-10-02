@@ -1,0 +1,12 @@
+{
+  "shop": "青禾轻食（写字楼店）",
+  "today": "2026-09-29",
+  "coupons": [
+    {"customer": "周小姐", "code": "QH0929-011", "face": 5, "threshold": 55, "expire": "2026-10-02", "reminded": false},
+    {"customer": "韩先生", "code": "QH0929-014", "face": 5, "threshold": 55, "expire": "2026-09-30", "reminded": false},
+    {"customer": "吴迪", "code": "QH0929-017", "face": 6, "threshold": 68, "expire": "2026-09-29", "reminded": false},
+    {"customer": "甜甜", "code": "QH0929-021", "face": 5, "threshold": 55, "expire": "2026-09-27", "reminded": true},
+    {"customer": "老许", "code": "QH0929-024", "face": 10, "threshold": 75, "expire": "2026-10-08", "reminded": false},
+    {"customer": "Nana", "code": "QH0929-027", "face": 8, "threshold": 57, "expire": "2026-10-01", "reminded": false}
+  ]
+}

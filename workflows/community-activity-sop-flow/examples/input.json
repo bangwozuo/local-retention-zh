@@ -1,0 +1,10 @@
+{
+  "shop": "每日鲜生鲜便利店（社区店）",
+  "industry": "零售",
+  "week_goal": "清库存",
+  "staff": "1 名专职店员管群",
+  "groups": [
+    {"name": "每日鲜·邻里群", "members": 210, "weekly_speakers": 36, "daily_msgs": 62, "ad_ratio": 0.24},
+    {"name": "每日鲜·团购二群", "members": 118, "weekly_speakers": 20, "daily_msgs": 25, "ad_ratio": 0.12}
+  ]
+}
