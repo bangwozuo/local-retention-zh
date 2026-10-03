@@ -7,6 +7,8 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自实跑产物：1,842 个客户 / 6 个群走通道 B 人工导出，「最近互动时间」缺失 214 条（11.6%）按规则**不补零**、显式标记 `interact_estimated: true`，沉睡分桶 312 / 189 / 96 人直接交给唤醒工作流消费。*
 
 ---

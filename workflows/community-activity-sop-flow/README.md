@@ -8,6 +8,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行（每日鲜样例）：2 个群均判「健康」（发言率 17%，广告占比 24%/12% 在基线内），「零售 × 清库存」精确匹配 3 个活动动作，产物一次落盘 SOP 报告 Word + 排期 Excel + 健康度图 + JSON 共 4 件。*
 
 ![群健康度](docs/assets/health-chart.png)

@@ -8,6 +8,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：5 条入群记录去重后 4 人（重复记录自动剔除），打标分布「到店扫码 / 外卖包裹卡 / 老带新 / 待确认」各 1 人，产物落盘 Excel + JSON。*
 
 ---
