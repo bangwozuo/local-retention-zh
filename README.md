@@ -2,37 +2,57 @@
 
 > **让 80% 沉睡私域重新到店的"AI 店长助理"**
 
+![演示](docs/demo.mp4)
+
+*上方演示视频由 5 个代表资产的真实执行截图串联（优惠券策略测算 / 入群欢迎与打标 / 每日朋友圈文案 / 沉睡客户唤醒 / 社群活动 SOP），每张 4 秒，全部来自脚本实跑与 AI 实跑产物。*
+
 [![Stage](https://img.shields.io/badge/stage-P0-orange)](https://github.com/bangwozuo)
-[![Asset](https://img.shields.io/badge/asset-prompt--only-blueviolet)](#资产形态)
+[![Asset](https://img.shields.io/badge/asset-5%20skills%20%2B%205%20workflows-blueviolet)](#资产矩阵)
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
 ---
 
-## 它是谁
+## 数字员工总览
 
-面向 **本地生活商家** 的数字员工资产包。
-
-| 项目 | 内容 |
+| 字段 | 内容 |
 |------|------|
-| 目标用户 | 已沉淀微信私域但不会运营的门店（68% 运营能力断层，据 R4 调研） |
-| 交付物 | 私域内容日更率 100%；沉睡客户唤醒到店率 ≥5%；社群月均活动 ≥4 次 |
-| 技能数 | 5 |
-| 工作流数 | 5 |
+| 名称 / 定位 | **复购管家** —— 让 80% 沉睡私域重新到店的"AI 店长助理" |
+| 目标客群 | 本地生活商家：已沉淀微信私域但不会运营的门店（68% 运营能力断层，据 R4 调研） |
+| 做什么 | 入群欢迎与打标、朋友圈/社群内容日更、优惠券测算与触达、沉睡客户唤醒、到店核销引导 |
+| 不做什么 | 不自动加好友、不群发轰炸（防封号红线）、不承诺转化率、不碰非官方自动化工具 |
+| KPI | 私域内容日更率 100%；沉睡客户唤醒到店率 ≥5%；社群月均活动 ≥4 次 |
 | 旧名存档 | `私域复购管家` |
+
+---
+
+## 资产矩阵（5 技能 + 5 工作流）
+
+| 资产 | 一句话 | 类型 | README |
+|------|--------|------|--------|
+| [企微客户对接](skills/wecom-customer-sync/README.md) | 企微客户/群数据按 SOP 安全读写，双通道（官方 API / 人工导出降级），写操作全部人工确认 | 技能 · T4 连接器 | [README](skills/wecom-customer-sync/README.md) |
+| [朋友圈文案生成](skills/moments-copy-generate/README.md) | 门店素材写成"像店主本人发的"朋友圈：五关写作规则 + 极限词自查，≤140 字防折叠 | 技能 · T2 提示词 | [README](skills/moments-copy-generate/README.md) |
+| [社群 SOP 模板库](skills/community-sop-library/README.md) | 6 项健康度基线诊断 + 3 类行业周节奏模板，按天拆到动作、每条带量化验收 | 技能 · T2 提示词 | [README](skills/community-sop-library/README.md) |
+| [优惠券策略](skills/coupon-strategy/README.md) | 安全面额 = 单均毛利 × 30%，ROI ≥ 1.5 才执行；脚本一次测算产出 Excel + ROI 图 | 技能 · T1 脚本 | [README](skills/coupon-strategy/README.md) |
+| [封号合规风控](skills/account-ban-risk-control/README.md) | 触达动作执行前的安检门：频次/内容/行为/工具四维审查，对抗性工具一律拦截 | 技能 · T2 提示词 | [README](skills/account-ban-risk-control/README.md) |
+| [入群欢迎与打标](workflows/group-welcome-tag-flow/README.md) | 扫码入群 5 分钟内 @欢迎、6 类来源自动打标、72h 首单转化排期，迎新期触达 ≤ 2 次 | 工作流 · T3 脚本 | [README](workflows/group-welcome-tag-flow/README.md) |
+| [每日朋友圈文案](workflows/daily-moments-copy-flow/README.md) | 每日 7:30 推送 3 条候选：配比核算 + 骨架填槽 + 极限词/诱导分享风控拦截 | 工作流 · T3 脚本 | [README](workflows/daily-moments-copy-flow/README.md) |
+| [社群活动 SOP](workflows/community-activity-sop-flow/README.md) | 每周一推送：群健康度诊断（沉默/劣化先治）→ 行业×目标活动模板 → 带验收的周排期 | 工作流 · T3 脚本 | [README](workflows/community-activity-sop-flow/README.md) |
+| [沉睡客户唤醒](workflows/dormant-customer-wake-flow/README.md) | 每周扫描 30/60/90 天未互动客户，逐人配安全面额券与触达节奏（7 天 ≤ 2 次） | 工作流 · T3 脚本 | [README](workflows/dormant-customer-wake-flow/README.md) |
+| [到店核销引导](workflows/instore-redemption-guide-flow/README.md) | 券到期前 3 天内按 D-3/D-1/当天三档提醒，一券只提醒一次，全部挂券码归因 | 工作流 · T3 脚本 | [README](workflows/instore-redemption-guide-flow/README.md) |
 
 ---
 
 ## 资产形态
 
-**纯提示词资产** —— 这是理解本仓库的关键：
+**提示词为主 + 确定性脚本为辅**：
 
 | 特性 | 说明 |
 |------|------|
 | ✅ 无需 API Key | 一个 Key 都不需要 |
-| ✅ 无需部署 | 没有服务端，没有脚本 |
-| ✅ 无需依赖 | 克隆后用文本编辑器就能看 |
-| ✅ 平台无关 | 粘贴到任何 AI 工具即可使用 |
+| ✅ 提示词资产 | 4 个技能即拷即用，粘贴到任何 AI 工具 |
+| ✅ 脚本资产 | 优惠券测算 + 5 条工作流带 `scripts/`，`--demo` 即可真实跑通，产物落盘 Excel/PNG/JSON |
+| ✅ 平台无关 | Coze / WorkBuddy / Dify / Claude / ChatGPT 均可 |
 | ✅ 用户自备算力 | 模型来自你自己的订阅 |
 
 ---
@@ -46,7 +66,14 @@
 4. 按 SKILL.md 的输入规格提供数据
 ```
 
-就这四步。完整指引见 [使用手册](docs/04-usage.md)。
+脚本类资产一条命令跑通（无需密钥）：
+
+```bash
+python skills/coupon-strategy/scripts/coupon_calc.py --demo
+python workflows/group-welcome-tag-flow/scripts/run_flow.py --demo
+```
+
+完整指引见 [使用手册](docs/04-usage.md)。
 
 ---
 
@@ -55,18 +82,19 @@
 ```text
 local-retention-zh/
 ├── README.md / employee.md / package.yaml     # 入口与 12 字段定义卡
+├── docs/demo.mp4                              # 5 资产真实执行演示视频
 ├── docs/01~07                                 # 员工级文档（架构/流程/场景/手册/示例/录像/测试）
 ├── skills/                                    # 5 个原子技能
 │   └── <skill>/
 │       ├── README.md  SKILL.md  prompt.txt  schema.json  examples/
-│       └── docs/                              # 该技能自己的 10 项文档 + 配图
+│       ├── scripts/                           # 优惠券策略带测算脚本
+│       └── docs/                              # 该技能自己的 10 项文档 + 截图
 ├── workflows/                                 # 5 条工作流（复合技能）
 │   └── <workflow>/
 │       ├── README.md  SKILL.md  prompt.txt  schema.json  examples/
-│       └── docs/                              # 该工作流自己的 10 项文档 + 配图
+│       ├── scripts/run_flow.py                # 端到端编排脚本（--demo 真实跑通）
+│       └── docs/                              # 该工作流自己的 10 项文档 + 截图
 ├── knowledge/                                 # RAG wiki 知识库
-│   ├── README.md  RAG-接入指南.md  template.md
-│   └── wiki/(index.md, _template.md, entries/)
 ├── connectors/                                # 连接器说明 + 合规红线
 ├── quality/                                   # 效果基线与追踪日志
 └── tests/                                     # 资产校验测试（离线，无需密钥）
@@ -76,7 +104,7 @@ local-retention-zh/
 
 | 文档 | 内容 |
 |------|------|
-| `README.md` | 资产速览与快速开始 |
+| `README.md` | 资产速览（真实执行截图 + 能力规则表 + 流水线图） |
 | `docs/01-usage-manual.md` | 安装使用手册 |
 | `docs/02-architecture.md` | 业务架构图 |
 | `docs/03-flow.md` | 流程图（Mermaid + 配图） |
@@ -86,7 +114,7 @@ local-retention-zh/
 | `docs/07-audience.md` | 用户群体 |
 | `docs/08-value.md` | 解决问题与价值 |
 | `docs/09-test-report.md` | 测试报告 |
-| `docs/assets/overview.svg` | 自动生成的流程示意图 |
+| `docs/assets/run-terminal.png` | 真实执行 / 实跑产物终端截图 |
 
 ---
 
@@ -101,28 +129,6 @@ local-retention-zh/
 | [示例库](docs/05-examples.md) | 5 组输入输出示例 |
 | [录像脚本](docs/06-recording-script.md) | 7 镜头分镜 + 旁白稿 |
 | [校验报告](docs/07-test-report.md) | 资产质量校验结果 |
-
----
-
-## 技能清单（5 个）
-
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 企微客户对接 | 文案生成 | `M` | [prompt.txt](skills/wecom-customer-sync/prompt.txt) | [docs](skills/wecom-customer-sync/docs/) |
-| 2 | 朋友圈文案生成 | 上架优化 | `S` | [prompt.txt](skills/moments-copy-generate/prompt.txt) | [docs](skills/moments-copy-generate/docs/) |
-| 3 | 社群 SOP 模板库 | 文案生成 | `S` | [prompt.txt](skills/community-sop-library/prompt.txt) | [docs](skills/community-sop-library/docs/) |
-| 4 | 优惠券策略 | 测算评估 | `S` | [prompt.txt](skills/coupon-strategy/prompt.txt) | [docs](skills/coupon-strategy/docs/) |
-| 5 | 封号合规风控 | 合规校验 | `S` | [prompt.txt](skills/account-ban-risk-control/prompt.txt) | [docs](skills/account-ban-risk-control/docs/) |
-
-## 工作流清单（5 条）
-
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 入群欢迎与打标 | `P0` | `M` | 事件（客户扫码入群） | [SKILL.md](workflows/group-welcome-tag-flow/SKILL.md) | [docs](workflows/group-welcome-tag-flow/docs/) |
-| 2 | 每日朋友圈文案 | `P0` | `S` | 定时（每日 7:30 推送 3 条候选） | [SKILL.md](workflows/daily-moments-copy-flow/SKILL.md) | [docs](workflows/daily-moments-copy-flow/docs/) |
-| 3 | 社群活动 SOP | `P0` | `S` | 定时（每周一推送本周 SOP） | [SKILL.md](workflows/community-activity-sop-flow/SKILL.md) | [docs](workflows/community-activity-sop-flow/docs/) |
-| 4 | 沉睡客户唤醒 | `P1` | `M` | 定时（每周扫描） | [SKILL.md](workflows/dormant-customer-wake-flow/SKILL.md) | [docs](workflows/dormant-customer-wake-flow/docs/) |
-| 5 | 到店核销引导 | `P1` | `M` | 事件（领券后 48h 未到店） | [SKILL.md](workflows/instore-redemption-guide-flow/SKILL.md) | [docs](workflows/instore-redemption-guide-flow/docs/) |
 
 ---
 
@@ -164,3 +170,5 @@ pytest tests/ -v
 ---
 
 *由 bangwozuo 业务库自动生成 · 2026-09-29*
+
+*本仓库遵循 [bangwozuo 数字员工资产规范](https://github.com/bangwozuo/digital-employee-spec) v3.0 ｜ [总入口](https://github.com/bangwozuo/digital-employees-hub-zh)*
