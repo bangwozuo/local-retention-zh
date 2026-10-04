@@ -8,7 +8,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/workflows/dormant-customer-wake-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/local-retention-zh/blob/main/workflows/dormant-customer-wake-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行（青禾轻食样例）：8 条客户记录去重、剔除活跃后 6 人进唤醒名单，按 30-59 / 60-89 / ≥90 天三桶分层（轻触达 / 券触达 / 强召回），券预算上限实跑测算，产物落盘执行清单 Excel + JSON。*
 

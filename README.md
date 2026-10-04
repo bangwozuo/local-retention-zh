@@ -2,9 +2,9 @@
 
 > **让 80% 沉睡私域重新到店的"AI 店长助理"**
 
-![演示](docs/assets/hero.gif)
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/docs/assets/hero.gif)
 
-*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](docs/demo.mp4)*
+*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/docs/demo.mp4)*
 
 *上方演示视频由 5 个代表资产的真实执行截图串联（优惠券策略测算 / 入群欢迎与打标 / 每日朋友圈文案 / 沉睡客户唤醒 / 社群活动 SOP），每张 4 秒，全部来自脚本实跑与 AI 实跑产物。*
 

@@ -8,7 +8,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/workflows/community-activity-sop-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/local-retention-zh/blob/main/workflows/community-activity-sop-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行（每日鲜样例）：2 个群均判「健康」（发言率 17%，广告占比 24%/12% 在基线内），「零售 × 清库存」精确匹配 3 个活动动作，产物一次落盘 SOP 报告 Word + 排期 Excel + 健康度图 + JSON 共 4 件。*
 
