@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/account-ban-risk-control/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/local-retention-zh/blob/main/skills/account-ban-risk-control/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/account-ban-risk-control/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/account-ban-risk-control/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自实跑产物：32 字待检文案命中 4 处违规（2 处《广告法》极限词 + 1 处绝对化表述 + 1 处虚假紧迫话术），判定「不通过」，每条给出可直接替换的写法。*
 

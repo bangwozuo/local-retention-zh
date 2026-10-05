@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/wecom-customer-sync/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/local-retention-zh/blob/main/skills/wecom-customer-sync/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/wecom-customer-sync/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/wecom-customer-sync/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自实跑产物：1,842 个客户 / 6 个群走通道 B 人工导出，「最近互动时间」缺失 214 条（11.6%）按规则**不补零**、显式标记 `interact_estimated: true`，沉睡分桶 312 / 189 / 96 人直接交给唤醒工作流消费。*
 

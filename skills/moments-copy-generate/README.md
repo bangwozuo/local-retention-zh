@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/moments-copy-generate/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/local-retention-zh/blob/main/skills/moments-copy-generate/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/moments-copy-generate/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/skills/moments-copy-generate/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自实跑产物：3 条候选文案（138 / 112 / 127 字，全部 ≤140 防折叠），极限词、诱导分享、假紧迫三项自查全部通过，并标注哪些细节需店主确认属实。*
 
