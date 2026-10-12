@@ -2,14 +2,14 @@
 
 > **让 80% 沉睡私域重新到店的"AI 店长助理"**
 
-![演示](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/docs/assets/hero.gif)
+![复购管家 · 动态演示](docs/assets/hero.gif)
 
-*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](https://cdn.jsdelivr.net/gh/bangwozuo/local-retention-zh@main/docs/demo.mp4)*
+*▲ 真实执行录播（自动循环播放）· [▶ 观看完整版合集视频](docs/demo.mp4)*
 
 *上方演示视频由 5 个代表资产的真实执行截图串联（优惠券策略测算 / 入群欢迎与打标 / 每日朋友圈文案 / 沉睡客户唤醒 / 社群活动 SOP），每张 4 秒，全部来自脚本实跑与 AI 实跑产物。*
 
 [![Stage](https://img.shields.io/badge/stage-P0-orange)](https://github.com/bangwozuo)
-[![Asset](https://img.shields.io/badge/asset-5%20skills%20%2B%205%20workflows-blueviolet)](#资产矩阵)
+[![Asset](https://img.shields.io/badge/asset-5%20skills%20%2B%205%20workflows-blueviolet)](#技能清单)
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -25,23 +25,6 @@
 | 不做什么 | 不自动加好友、不群发轰炸（防封号红线）、不承诺转化率、不碰非官方自动化工具 |
 | KPI | 私域内容日更率 100%；沉睡客户唤醒到店率 ≥5%；社群月均活动 ≥4 次 |
 | 旧名存档 | `私域复购管家` |
-
----
-
-## 资产矩阵（5 技能 + 5 工作流）
-
-| 资产 | 一句话 | 类型 | README |
-|------|--------|------|--------|
-| [企微客户对接](skills/wecom-customer-sync/README.md) | 企微客户/群数据按 SOP 安全读写，双通道（官方 API / 人工导出降级），写操作全部人工确认 | 技能 · T4 连接器 | [README](skills/wecom-customer-sync/README.md) |
-| [朋友圈文案生成](skills/moments-copy-generate/README.md) | 门店素材写成"像店主本人发的"朋友圈：五关写作规则 + 极限词自查，≤140 字防折叠 | 技能 · T2 提示词 | [README](skills/moments-copy-generate/README.md) |
-| [社群 SOP 模板库](skills/community-sop-library/README.md) | 6 项健康度基线诊断 + 3 类行业周节奏模板，按天拆到动作、每条带量化验收 | 技能 · T2 提示词 | [README](skills/community-sop-library/README.md) |
-| [优惠券策略](skills/coupon-strategy/README.md) | 安全面额 = 单均毛利 × 30%，ROI ≥ 1.5 才执行；脚本一次测算产出 Excel + ROI 图 | 技能 · T1 脚本 | [README](skills/coupon-strategy/README.md) |
-| [封号合规风控](skills/account-ban-risk-control/README.md) | 触达动作执行前的安检门：频次/内容/行为/工具四维审查，对抗性工具一律拦截 | 技能 · T2 提示词 | [README](skills/account-ban-risk-control/README.md) |
-| [入群欢迎与打标](workflows/group-welcome-tag-flow/README.md) | 扫码入群 5 分钟内 @欢迎、6 类来源自动打标、72h 首单转化排期，迎新期触达 ≤ 2 次 | 工作流 · T3 脚本 | [README](workflows/group-welcome-tag-flow/README.md) |
-| [每日朋友圈文案](workflows/daily-moments-copy-flow/README.md) | 每日 7:30 推送 3 条候选：配比核算 + 骨架填槽 + 极限词/诱导分享风控拦截 | 工作流 · T3 脚本 | [README](workflows/daily-moments-copy-flow/README.md) |
-| [社群活动 SOP](workflows/community-activity-sop-flow/README.md) | 每周一推送：群健康度诊断（沉默/劣化先治）→ 行业×目标活动模板 → 带验收的周排期 | 工作流 · T3 脚本 | [README](workflows/community-activity-sop-flow/README.md) |
-| [沉睡客户唤醒](workflows/dormant-customer-wake-flow/README.md) | 每周扫描 30/60/90 天未互动客户，逐人配安全面额券与触达节奏（7 天 ≤ 2 次） | 工作流 · T3 脚本 | [README](workflows/dormant-customer-wake-flow/README.md) |
-| [到店核销引导](workflows/instore-redemption-guide-flow/README.md) | 券到期前 3 天内按 D-3/D-1/当天三档提醒，一券只提醒一次，全部挂券码归因 | 工作流 · T3 脚本 | [README](workflows/instore-redemption-guide-flow/README.md) |
 
 ---
 
@@ -131,6 +114,28 @@ local-retention-zh/
 | [示例库](docs/05-examples.md) | 5 组输入输出示例 |
 | [录像脚本](docs/06-recording-script.md) | 7 镜头分镜 + 旁白稿 |
 | [校验报告](docs/07-test-report.md) | 资产质量校验结果 |
+
+---
+
+## 技能清单（5 个）
+
+| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
+|---|------|--------|--------|--------|------|
+| 1 | 企微客户对接 | 连接器数据读写 | `M` | [prompt.txt](skills/wecom-customer-sync/prompt.txt) | [docs](skills/wecom-customer-sync/docs/) |
+| 2 | 朋友圈文案生成 | 文案撰写 | `S` | [prompt.txt](skills/moments-copy-generate/prompt.txt) | [docs](skills/moments-copy-generate/docs/) |
+| 3 | 社群 SOP 模板库 | 流程与方案设计 | `S` | [prompt.txt](skills/community-sop-library/prompt.txt) | [docs](skills/community-sop-library/docs/) |
+| 4 | 优惠券策略 | 测算与评估 | `S` | [prompt.txt](skills/coupon-strategy/prompt.txt) | [docs](skills/coupon-strategy/docs/) |
+| 5 | 封号合规风控 | 合规校验 | `S` | [prompt.txt](skills/account-ban-risk-control/prompt.txt) | [docs](skills/account-ban-risk-control/docs/) |
+
+## 工作流清单（5 条）
+
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
+|---|--------|------|--------|------|------|------|
+| 1 | 入群欢迎与打标 | `P0` | `M` | 事件（客户扫码入群） | [SKILL.md](workflows/group-welcome-tag-flow/SKILL.md) | [docs](workflows/group-welcome-tag-flow/docs/) |
+| 2 | 每日朋友圈文案 | `P0` | `S` | 定时（每日 7:30 推送 3 条候选） | [SKILL.md](workflows/daily-moments-copy-flow/SKILL.md) | [docs](workflows/daily-moments-copy-flow/docs/) |
+| 3 | 社群活动 SOP | `P0` | `S` | 定时（每周一推送本周 SOP） | [SKILL.md](workflows/community-activity-sop-flow/SKILL.md) | [docs](workflows/community-activity-sop-flow/docs/) |
+| 4 | 沉睡客户唤醒 | `P1` | `M` | 定时（每周扫描） | [SKILL.md](workflows/dormant-customer-wake-flow/SKILL.md) | [docs](workflows/dormant-customer-wake-flow/docs/) |
+| 5 | 到店核销引导 | `P1` | `M` | 事件（领券后 48h 未到店） | [SKILL.md](workflows/instore-redemption-guide-flow/SKILL.md) | [docs](workflows/instore-redemption-guide-flow/docs/) |
 
 ---
 

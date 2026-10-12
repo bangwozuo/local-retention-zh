@@ -4,7 +4,10 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["action", "plan"],
+    "required": [
+      "action",
+      "plan"
+    ],
     "properties": {
       "action": {
         "type": "string",
@@ -24,17 +27,36 @@
   },
   "output": {
     "type": "object",
-    "required": ["summary", "violations"],
+    "required": [
+      "summary",
+      "violations"
+    ],
     "properties": {
       "summary": {
         "type": "object",
         "description": "受审动作 / 频次核算 / 计数 / 整体判定",
         "properties": {
-          "受审动作": {"type": "string"},
-          "频次核算": {"type": "string", "description": "每客户每日 X 条（限额 1）"},
-          "拦截": {"type": "integer"},
-          "缓行": {"type": "integer"},
-          "整体判定": {"type": "string", "enum": ["放行", "修改后放行", "拦截"]}
+          "受审动作": {
+            "type": "string"
+          },
+          "频次核算": {
+            "type": "string",
+            "description": "每客户每日 X 条（限额 1）"
+          },
+          "拦截": {
+            "type": "integer"
+          },
+          "缓行": {
+            "type": "integer"
+          },
+          "整体判定": {
+            "type": "string",
+            "enum": [
+              "放行",
+              "修改后放行",
+              "拦截"
+            ]
+          }
         }
       },
       "violations": {
@@ -43,18 +65,35 @@
         "items": {
           "type": "object",
           "properties": {
-            "级别": {"type": "string", "enum": ["🔴 拦截", "🟡 缓行", "🔵 提示"]},
-            "原计划": {"type": "string"},
-            "命中规则": {"type": "string"},
-            "风险后果": {"type": "string"},
-            "合规替代": {"type": "string"}
+            "级别": {
+              "type": "string",
+              "enum": [
+                "🔴 拦截",
+                "🟡 缓行",
+                "🔵 提示"
+              ]
+            },
+            "原计划": {
+              "type": "string"
+            },
+            "命中规则": {
+              "type": "string"
+            },
+            "风险后果": {
+              "type": "string"
+            },
+            "合规替代": {
+              "type": "string"
+            }
           }
         }
       },
       "account_advice": {
         "type": "array",
         "description": "账号健康建议（养号/降频/分流）",
-        "items": {"type": "string"}
+        "items": {
+          "type": "string"
+        }
       }
     },
     "x-rendered-from": "capability:ban_risk_review"
@@ -74,6 +113,7 @@
       "new_account_warmup_days": "7-14"
     },
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }

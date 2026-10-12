@@ -4,12 +4,20 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["industry", "group_status"],
+    "required": [
+      "industry",
+      "group_status"
+    ],
     "properties": {
       "industry": {
         "type": "string",
         "description": "门店行业：餐饮 / 零售（便利店·生鲜·烘焙） / 美业（美甲·美发·皮肤管理）",
-        "enum": ["餐饮", "零售", "美业", "其他到店业态"]
+        "enum": [
+          "餐饮",
+          "零售",
+          "美业",
+          "其他到店业态"
+        ]
       },
       "group_status": {
         "type": "string",
@@ -27,14 +35,26 @@
   },
   "output": {
     "type": "object",
-    "required": ["summary", "weekly_plan"],
+    "required": [
+      "summary",
+      "weekly_plan"
+    ],
     "properties": {
       "summary": {
         "type": "object",
         "description": "行业 / 群况 / 健康度诊断 / 本周主题",
         "properties": {
-          "健康度判定": {"type": "string", "enum": ["健康", "待激活", "沉默群"]},
-          "本周主题": {"type": "string"}
+          "健康度判定": {
+            "type": "string",
+            "enum": [
+              "健康",
+              "待激活",
+              "沉默群"
+            ]
+          },
+          "本周主题": {
+            "type": "string"
+          }
         }
       },
       "weekly_plan": {
@@ -43,12 +63,24 @@
         "items": {
           "type": "object",
           "properties": {
-            "日期": {"type": "string"},
-            "时段": {"type": "string"},
-            "动作": {"type": "string"},
-            "内容要点": {"type": "string"},
-            "负责人": {"type": "string"},
-            "验收标准": {"type": "string"}
+            "日期": {
+              "type": "string"
+            },
+            "时段": {
+              "type": "string"
+            },
+            "动作": {
+              "type": "string"
+            },
+            "内容要点": {
+              "type": "string"
+            },
+            "负责人": {
+              "type": "string"
+            },
+            "验收标准": {
+              "type": "string"
+            }
           }
         }
       },
@@ -58,25 +90,40 @@
         "items": {
           "type": "object",
           "properties": {
-            "阶段": {"type": "string"},
-            "时间": {"type": "string"},
-            "动作": {"type": "string"},
-            "物料": {"type": "string"},
-            "人工确认点": {"type": "string"}
+            "阶段": {
+              "type": "string"
+            },
+            "时间": {
+              "type": "string"
+            },
+            "动作": {
+              "type": "string"
+            },
+            "物料": {
+              "type": "string"
+            },
+            "人工确认点": {
+              "type": "string"
+            }
           }
         }
       },
       "metrics": {
         "type": "array",
         "description": "健康度基线对照表",
-        "items": {"type": "string"}
+        "items": {
+          "type": "string"
+        }
       }
     },
     "x-rendered-from": "capability:community_sop"
   },
   "constraints": {
     "max_input_length": 5000,
-    "forbidden_words": ["转发才能领", "集赞领取"],
+    "forbidden_words": [
+      "转发才能领",
+      "集赞领取"
+    ],
     "health_baselines": {
       "group_size": "150-300",
       "weekly_speak_rate": ">=15%",
@@ -89,6 +136,7 @@
       "marketing_msg_per_customer_per_day": 1
     },
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }

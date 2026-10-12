@@ -4,17 +4,28 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["system", "task"],
+    "required": [
+      "system",
+      "task"
+    ],
     "properties": {
       "system": {
         "type": "string",
         "description": "目标系统：企业微信（其他系统走各自连接器）",
-        "enum": ["企业微信", "微信个人号（仅人工导出）"]
+        "enum": [
+          "企业微信",
+          "微信个人号（仅人工导出）"
+        ]
       },
       "task": {
         "type": "string",
         "description": "同步任务：每日增量 / 每周全量 / 触达回写 / 单次导出",
-        "enum": ["每日增量", "每周全量", "触达回写", "单次导出"]
+        "enum": [
+          "每日增量",
+          "每周全量",
+          "触达回写",
+          "单次导出"
+        ]
       },
       "channel": {
         "type": "string",
@@ -28,17 +39,41 @@
   },
   "output": {
     "type": "object",
-    "required": ["sync_record", "data_package"],
+    "required": [
+      "sync_record",
+      "data_package"
+    ],
     "properties": {
       "sync_record": {
         "type": "object",
         "description": "同步执行单",
         "properties": {
-          "通道": {"type": "string", "enum": ["A（官方 API）", "B（人工导出）"]},
-          "数据新鲜度": {"type": "string", "enum": ["实时", "T+1"]},
-          "拉取范围": {"type": "string"},
-          "记录数": {"type": "object"},
-          "字段缺口": {"type": "array", "items": {"type": "string"}}
+          "通道": {
+            "type": "string",
+            "enum": [
+              "A（官方 API）",
+              "B（人工导出）"
+            ]
+          },
+          "数据新鲜度": {
+            "type": "string",
+            "enum": [
+              "实时",
+              "T+1"
+            ]
+          },
+          "拉取范围": {
+            "type": "string"
+          },
+          "记录数": {
+            "type": "object"
+          },
+          "字段缺口": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       },
       "write_list": {
@@ -47,10 +82,19 @@
         "items": {
           "type": "object",
           "properties": {
-            "客户标识": {"type": "string", "description": "昵称+手机尾号后4位"},
-            "动作": {"type": "string"},
-            "标签/字段": {"type": "string"},
-            "依据": {"type": "string"}
+            "客户标识": {
+              "type": "string",
+              "description": "昵称+手机尾号后4位"
+            },
+            "动作": {
+              "type": "string"
+            },
+            "标签/字段": {
+              "type": "string"
+            },
+            "依据": {
+              "type": "string"
+            }
           }
         }
       },
@@ -58,12 +102,30 @@
         "type": "object",
         "description": "交给下游的客户事件流字段映射",
         "properties": {
-          "customer_id": {"type": "string"},
-          "added_at": {"type": "string"},
-          "last_interact_at": {"type": "string"},
-          "dormant_days": {"type": "integer"},
-          "tags": {"type": "array", "items": {"type": "string"}},
-          "group_ids": {"type": "array", "items": {"type": "string"}}
+          "customer_id": {
+            "type": "string"
+          },
+          "added_at": {
+            "type": "string"
+          },
+          "last_interact_at": {
+            "type": "string"
+          },
+          "dormant_days": {
+            "type": "integer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "group_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       }
     },
@@ -85,6 +147,7 @@
       "batch_write_confirm_threshold": 100
     },
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }

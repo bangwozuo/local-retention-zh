@@ -4,7 +4,10 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["brief", "materials"],
+    "required": [
+      "brief",
+      "materials"
+    ],
     "properties": {
       "brief": {
         "type": "string",
@@ -26,7 +29,10 @@
   },
   "output": {
     "type": "object",
-    "required": ["candidates", "self_check"],
+    "required": [
+      "candidates",
+      "self_check"
+    ],
     "properties": {
       "candidates": {
         "type": "array",
@@ -34,11 +40,29 @@
         "items": {
           "type": "object",
           "properties": {
-            "骨架类型": {"type": "string", "enum": ["新品上市", "天气借势", "幕后信任", "限时specials", "客户返图"]},
-            "发布时段": {"type": "string"},
-            "配图建议": {"type": "string"},
-            "文案": {"type": "string", "description": "全文 ≤ 140 字"},
-            "评论区补位": {"type": "string"}
+            "骨架类型": {
+              "type": "string",
+              "enum": [
+                "新品上市",
+                "天气借势",
+                "幕后信任",
+                "限时specials",
+                "客户返图"
+              ]
+            },
+            "发布时段": {
+              "type": "string"
+            },
+            "配图建议": {
+              "type": "string"
+            },
+            "文案": {
+              "type": "string",
+              "description": "全文 ≤ 140 字"
+            },
+            "评论区补位": {
+              "type": "string"
+            }
           }
         }
       },
@@ -46,10 +70,18 @@
         "type": "object",
         "description": "每条候选的四项自查",
         "properties": {
-          "字数<=140": {"type": "boolean"},
-          "极限词": {"type": "string"},
-          "诱导分享": {"type": "string"},
-          "细节真实性": {"type": "string"}
+          "字数<=140": {
+            "type": "boolean"
+          },
+          "极限词": {
+            "type": "string"
+          },
+          "诱导分享": {
+            "type": "string"
+          },
+          "细节真实性": {
+            "type": "string"
+          }
         }
       },
       "recommendation": {
@@ -61,15 +93,27 @@
   },
   "constraints": {
     "max_input_length": 5000,
-    "forbidden_words": ["最好吃", "全城第一", "100%", "独家配方", "转发才能领"],
+    "forbidden_words": [
+      "最好吃",
+      "全城第一",
+      "100%",
+      "独家配方",
+      "转发才能领"
+    ],
     "writing_rules": {
       "max_chars": 140,
-      "photo_count_options": [1, 3, 4, 6],
+      "photo_count_options": [
+        1,
+        3,
+        4,
+        6
+      ],
       "marketing_per_day": 3,
       "total_per_day": 5,
       "quiet_hours": "21:30-07:30"
     },
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }
