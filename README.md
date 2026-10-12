@@ -119,23 +119,23 @@ local-retention-zh/
 
 ## 技能清单（5 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 企微客户对接 | 连接器数据读写 | `M` | [prompt.txt](skills/wecom-customer-sync/prompt.txt) | [docs](skills/wecom-customer-sync/docs/) |
-| 2 | 朋友圈文案生成 | 文案撰写 | `S` | [prompt.txt](skills/moments-copy-generate/prompt.txt) | [docs](skills/moments-copy-generate/docs/) |
-| 3 | 社群 SOP 模板库 | 流程与方案设计 | `S` | [prompt.txt](skills/community-sop-library/prompt.txt) | [docs](skills/community-sop-library/docs/) |
-| 4 | 优惠券策略 | 测算与评估 | `S` | [prompt.txt](skills/coupon-strategy/prompt.txt) | [docs](skills/coupon-strategy/docs/) |
-| 5 | 封号合规风控 | 合规校验 | `S` | [prompt.txt](skills/account-ban-risk-control/prompt.txt) | [docs](skills/account-ban-risk-control/docs/) |
+| # | 技能 | 能力族 | 复杂度 | 说明文档 |
+|---|------|--------|--------|----------|
+| 1 | 企微客户对接 | 连接器数据读写 | `M` | [README](skills/wecom-customer-sync/README.md) |
+| 2 | 朋友圈文案生成 | 文案撰写 | `S` | [README](skills/moments-copy-generate/README.md) |
+| 3 | 社群 SOP 模板库 | 流程与方案设计 | `S` | [README](skills/community-sop-library/README.md) |
+| 4 | 优惠券策略 | 测算与评估 | `S` | [README](skills/coupon-strategy/README.md) |
+| 5 | 封号合规风控 | 合规校验 | `S` | [README](skills/account-ban-risk-control/README.md) |
 
 ## 工作流清单（5 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 入群欢迎与打标 | `P0` | `M` | 事件（客户扫码入群） | [SKILL.md](workflows/group-welcome-tag-flow/SKILL.md) | [docs](workflows/group-welcome-tag-flow/docs/) |
-| 2 | 每日朋友圈文案 | `P0` | `S` | 定时（每日 7:30 推送 3 条候选） | [SKILL.md](workflows/daily-moments-copy-flow/SKILL.md) | [docs](workflows/daily-moments-copy-flow/docs/) |
-| 3 | 社群活动 SOP | `P0` | `S` | 定时（每周一推送本周 SOP） | [SKILL.md](workflows/community-activity-sop-flow/SKILL.md) | [docs](workflows/community-activity-sop-flow/docs/) |
-| 4 | 沉睡客户唤醒 | `P1` | `M` | 定时（每周扫描） | [SKILL.md](workflows/dormant-customer-wake-flow/SKILL.md) | [docs](workflows/dormant-customer-wake-flow/docs/) |
-| 5 | 到店核销引导 | `P1` | `M` | 事件（领券后 48h 未到店） | [SKILL.md](workflows/instore-redemption-guide-flow/SKILL.md) | [docs](workflows/instore-redemption-guide-flow/docs/) |
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 说明文档 |
+|---|--------|------|--------|------|----------|
+| 1 | 入群欢迎与打标 | `P0` | `M` | 事件（客户扫码入群） | [README](workflows/group-welcome-tag-flow/README.md) |
+| 2 | 每日朋友圈文案 | `P0` | `S` | 定时（每日 7:30 推送 3 条候选） | [README](workflows/daily-moments-copy-flow/README.md) |
+| 3 | 社群活动 SOP | `P0` | `S` | 定时（每周一推送本周 SOP） | [README](workflows/community-activity-sop-flow/README.md) |
+| 4 | 沉睡客户唤醒 | `P1` | `M` | 定时（每周扫描） | [README](workflows/dormant-customer-wake-flow/README.md) |
+| 5 | 到店核销引导 | `P1` | `M` | 事件（领券后 48h 未到店） | [README](workflows/instore-redemption-guide-flow/README.md) |
 
 ---
 
